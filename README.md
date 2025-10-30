@@ -31,11 +31,11 @@ A comprehensive cybersecurity desktop application built with Python and Tkinter,
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git)
+    git clone https://github.com/agent-rxd/CIA-Triad-Suite.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
-    cd YOUR_REPO_NAME
+    cd CIA-Triad-Suite
     ```
 3.  **Install dependencies:**
     Ensure you have `pip` installed.
