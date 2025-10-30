@@ -6,16 +6,16 @@ import sqlite3
 from datetime import datetime
 import threading
 import time
-import shutil  # For backup functionality
-import subprocess  # For ping in availability
-from cryptography.fernet import Fernet  # For encryption/decryption
+import shutil  
+import subprocess  
+from cryptography.fernet import Fernet  
 
-# --- Global Styling (Hacker Theme) ---
+
 FONT_LARGE = ('Consolas', 12, 'bold')
 FONT_MEDIUM = ('Consolas', 10)
 BG_MAIN = '#1a1a1a'
 BG_FRAME = '#222222'
-FG_LABEL = '#00ff00'  # Hacker green
+FG_LABEL = '#00ff00'  # H
 BG_ENTRY = '#333333'
 FG_ENTRY = '#00ff00'
 BG_BUTTON_PRIMARY = '#008000'  # Scan/Encrypt/Backup Now
@@ -32,7 +32,7 @@ FG_TEXT_AREA = '#00ff00'
 BG_STATUS = '#333333'
 FG_STATUS = '#00ff00'
 
-# Log message tag colors
+
 TAG_INFO = "#00ffff"  # Cyan
 TAG_SUCCESS = "#33ff33"  # Bright green
 TAG_WARNING = "#ffff00"  # Yellow
@@ -51,11 +51,11 @@ class CIATriadSuiteApp:
         self.periodic_scan_job = None
         self.network_monitor_job = None
 
-        # --- Main Notebook (Tabbed Interface) ---
+    
         self.notebook = ttk.Notebook(master)
         self.notebook.pack(pady=10, padx=10, expand=True, fill=tk.BOTH)
 
-        # Configure Notebook style (for tabs)
+        
         style = ttk.Style()
         style.theme_use('clam')  # Use a theme that allows more customization
         style.configure('TNotebook', background=BG_MAIN, borderwidth=0)
@@ -64,7 +64,7 @@ class CIATriadSuiteApp:
         style.map('TNotebook.Tab', background=[('selected', BG_BUTTON_BROWSE)],
                   foreground=[('selected', 'white')])
 
-        # Create Frames for each tab
+        
         self.confidentiality_frame = tk.Frame(self.notebook, bg=BG_MAIN)
         self.integrity_frame = tk.Frame(self.notebook, bg=BG_MAIN)
         self.availability_frame = tk.Frame(self.notebook, bg=BG_MAIN)
@@ -73,8 +73,7 @@ class CIATriadSuiteApp:
         self.notebook.add(self.integrity_frame, text="Integrity Tools")
         self.notebook.add(self.availability_frame, text="Availability Tools")
 
-        # --- Common Log and Status Bar ---
-        # Create these widgets BEFORE calling init_db or populating tabs
+
         self.log_text = scrolledtext.ScrolledText(master, wrap=tk.WORD, font=FONT_MEDIUM, bg=BG_TEXT_AREA,
                                                   fg=FG_TEXT_AREA, bd=2, relief=tk.SUNKEN)
         self.log_text.pack(pady=10, padx=10, expand=True, fill=tk.BOTH)
@@ -92,12 +91,12 @@ class CIATriadSuiteApp:
         tk.Button(bottom_frame, text="Clear Output", command=self.clear_log_output, font=FONT_MEDIUM,
                   bg=BG_BUTTON_CLEAR, fg=FG_BUTTON, relief=tk.RAISED, bd=2).pack(side=tk.RIGHT, padx=5, pady=2)
 
-        # --- Populate Tabs ---
+
         self.create_confidentiality_widgets(self.confidentiality_frame)
         self.create_integrity_widgets(self.integrity_frame)
         self.create_availability_widgets(self.availability_frame)
 
-        # Now initialize the database, which uses log_message
+        
         self.init_db()
 
     def init_db(self):
@@ -107,7 +106,7 @@ class CIATriadSuiteApp:
             conn = sqlite3.connect(self.db_name)
             cursor = conn.cursor()
 
-            # Table for file integrity hashes
+            
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS file_hashes (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
